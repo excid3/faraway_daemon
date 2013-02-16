@@ -7,27 +7,27 @@ from wifi import Wifi
 CONFIG_URL = "http://excid3.com/rpi/"
 
 class RaspberryPi:
-    @memoize
-    def serial_number(self):
-        return "000000005a9d1068"
-        output = subprocess.check_output(["cat", "/proc/cpuinfo"])
-        entry  = filter(None, output.split("\n"))[-1]
-        return entry.split()[-1]
+    def update(self):
+        print("Downloading config..."),
+        config = self.config()
+        print "success"
 
-    @memoize
+        print("Updating network interfaces..."),
+        if Wifi(config["network"]).update(): print "success"
+
     def config(self):
         return json.loads(self.get_config())
-
-    @memoize
-    def config_url(self):
-        return CONFIG_URL + self.serial_number() + "/config.json"
 
     def get_config(self):
         response = urllib.urlopen(self.config_url())
         return response.read()
 
-    def update(self):
-        config = self.config()
+    @memoize
+    def serial_number(self):
+        output = subprocess.check_output(["cat", "/proc/cpuinfo"])
+        entry  = filter(None, output.split("\n"))[-1]
+        return entry.split()[-1]
 
-        print("Updating network interfaces..."),
-        if Wifi(config["network"]).update(): print "success"
+    @memoize
+    def config_url(self):
+        return CONFIG_URL + self.serial_number() + "/config.json"
