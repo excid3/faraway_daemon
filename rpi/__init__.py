@@ -30,4 +30,4 @@ class RaspberryPi:
         config = self.config()
 
         print("Updating network interfaces..."),
-        print Wifi(config["network"]).update()
+        if Wifi(config["network"]).update(): print "success"

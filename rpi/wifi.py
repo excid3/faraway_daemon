@@ -8,12 +8,11 @@ class Wifi:
     def update(self):
         changed = self.changed()
         if changed:
-            return changed
             f = open("/etc/network/interfaces", "wb")
-            f.write(self.wireless_config(ssid, password))
-            return f.close()
-
-        return changed
+            f.write(self.wireless_config())
+            f.close()
+            return True
+        return False
 
     def changed(self):
         return hashlib.md5(self.interfaces).hexdigest() != hashlib.md5(self.wireless_config()).hexdigest()
