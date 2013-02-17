@@ -3,14 +3,17 @@ import subprocess
 import urllib
 
 from util import memoize
-from video import Video
+from desktop import Desktop
 from network import Network
+from video import Video
+
 
 class RaspberryPi:
     def update(self):
         self.download_config()
         self.update_video()
         self.update_network()
+        self.update_desktop()
 
     def download_config(self):
         print("Downloading config..."),
@@ -23,6 +26,10 @@ class RaspberryPi:
     def update_network(self):
         print("Updating network interfaces..."),
         self.show_result(Network(self.config()["network"]).update())
+
+    def update_desktop(self):
+        print("Updating desktop configuration..."),
+        self.show_result(Desktop(self.config()["desktop"]).update())
 
     def show_result(self, result):
         if result: print "success"
