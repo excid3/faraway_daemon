@@ -20,14 +20,14 @@ class Video(RaspberryPiConfig):
         return "disable_overscan={}".format(disable)
 
     def overscan_left(self, pixels):
-        if pixels: return "overscan_left={}".format(pixels)
+        return "overscan_left={}".format(pixels)
 
     def overscan_right(self, pixels):
-        if pixels: return "overscan_right={}".format(pixels)
+        return "overscan_right={}".format(pixels)
 
     def overscan_top(self, pixels):
-        if pixels: return "overscan_top={}".format(pixels)
+        return "overscan_top={}".format(pixels)
 
     def overscan_bottom(self, pixels):
-        if pixels: return "overscan_bottom={}".format(pixels)
+        return "overscan_bottom={}".format(pixels)
 
