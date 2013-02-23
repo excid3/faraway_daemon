@@ -51,4 +51,4 @@ class RaspberryPi:
 
     @memoize
     def config_url(self):
-        return "http://excid3.com/rpi/" + self.serial_number() + "/config.json"
+        return "http://rpi.excid3.com/raspberry_pis/" + self.serial_number() + ".json"
