@@ -10,14 +10,18 @@ from video import Video
 
 class RaspberryPi:
     def update(self):
+        self.changed = False
+
         self.download_config()
         self.update_video()
         self.update_network()
         self.update_desktop()
 
+        self.reboot()
+
     def download_config(self):
         print("Downloading config..."),
-        self.show_result(self.config())
+        self.show_result(self.config(), False)
 
     def update_video(self):
         print("Updating video output..."),
@@ -31,9 +35,17 @@ class RaspberryPi:
         print("Updating desktop configuration..."),
         self.show_result(Desktop(self.config()["desktop"]).update())
 
-    def show_result(self, result):
-        if result: print "success"
-        else:      print "no changes"
+    def reboot(self):
+        if self.changed:
+            subprocess.call(["/sbin/shutdown", "-r", "now"])
+
+    def show_result(self, result, record_success=True):
+        if result:
+            if record_success:
+                self.changed = True
+            print "success"
+        else:
+            print "no changes"
 
     def get_config(self):
         response = urllib.urlopen(self.config_url())
