@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import urllib
 
@@ -6,7 +7,6 @@ from util import memoize
 from desktop import Desktop
 from network import Network
 from video import Video
-
 
 class RaspberryPi:
     def update(self):
@@ -63,4 +63,11 @@ class RaspberryPi:
 
     @memoize
     def config_url(self):
-        return "http://rpi.excid3.com/raspberry_pis/" + self.serial_number() + ".json"
+        return "http://rpi.excid3.com/raspberry_pis/" + self.serial_number() + ".json?auth_token=" + self.auth_token()
+
+    def auth_token(self):
+        path = os.path.expanduser("~/.standup")
+        if os.path.exists(path):
+            return open(path).read().strip()
+        else:
+            raise AttributeError, "Auth token .standup does not exist"
