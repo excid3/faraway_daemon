@@ -7,11 +7,10 @@ from util import memoize
 from desktop import Desktop
 from network import Network
 from video import Video
+from reboot import Reboot
 
 class RaspberryPi:
     def update(self):
-        self.changed = False
-
         self.download_config()
         self.update_video()
         self.update_network()
@@ -21,7 +20,7 @@ class RaspberryPi:
 
     def download_config(self):
         print("Downloading config..."),
-        self.show_result(self.config(), False)
+        self.show_result(self.config())
 
     def update_video(self):
         print("Updating video output..."),
@@ -36,13 +35,11 @@ class RaspberryPi:
         self.show_result(Desktop(self.config()["desktop"]).update())
 
     def reboot(self):
-        if self.changed:
+        if Reboot(self.config()["reboot"]).status():
             subprocess.call(["/sbin/shutdown", "-r", "now"])
 
-    def show_result(self, result, record_success=True):
+    def show_result(self, result):
         if result:
-            if record_success:
-                self.changed = True
             print "success"
         else:
             print "no changes"
