@@ -1,6 +1,6 @@
-from rpi.util import digest
+from box.util import digest
 
-class RaspberryPiConfig:
+class FarawayBoxConfig:
     def __init__(self, attrs):
         self.attrs = attrs
 

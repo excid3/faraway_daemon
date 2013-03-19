@@ -1,6 +1,6 @@
-from rpi.config import RaspberryPiConfig
+from box.config import FarawayBoxConfig
 
-class Network(RaspberryPiConfig):
+class Network(FarawayBoxConfig):
     CONFIG_PATH = "/etc/network/interfaces"
 
     def config(self):

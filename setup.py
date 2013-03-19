@@ -1,3 +1,3 @@
-from rpi import RaspberryPi
+from box import FarawayBox 
 
-RaspberryPi().update()
+FarawayBox().update()
