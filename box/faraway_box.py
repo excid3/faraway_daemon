@@ -35,7 +35,7 @@ class FarawayBox:
         self.show_result(Desktop(self.config()["desktop"]).update())
 
     def reboot(self):
-        if Reboot(self.config()["reboot"]).status():
+        if Reboot(self.config()["maintenance"]).status():
             subprocess.call(["/sbin/shutdown", "-r", "now"])
 
     def show_result(self, result):
