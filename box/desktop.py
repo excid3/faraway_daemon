@@ -1,6 +1,6 @@
-from rpi.config import RaspberryPiConfig
+from box.config import FarawayBoxConfig
 
-class Desktop(RaspberryPiConfig):
+class Desktop(FarawayBoxConfig):
     CONFIG_PATH = "/etc/xdg/lxsession/LXDE/autostart"
 
     def config(self):

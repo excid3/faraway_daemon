@@ -1,6 +1,6 @@
-from rpi.config import RaspberryPiConfig
+from box.config import FarawayBoxConfig
 
-class Video(RaspberryPiConfig):
+class Video(FarawayBoxConfig):
     CONFIG_PATH = "/boot/config.txt"
 
     def config(self):

@@ -9,7 +9,7 @@ from network import Network
 from video import Video
 from reboot import Reboot
 
-class RaspberryPi:
+class FarawayBox:
     def update(self):
         self.download_config()
         self.update_video()
@@ -60,7 +60,7 @@ class RaspberryPi:
 
     @memoize
     def config_url(self):
-        return "http://rpi.excid3.com/raspberry_pis/" + self.serial_number() + ".json?auth_token=" + self.auth_token()
+        return "http://box.farawaylabs.com/boxes/" + self.serial_number() + ".json?auth_token=" + self.auth_token()
 
     def auth_token(self):
         path = os.path.expanduser("~/.standup")
