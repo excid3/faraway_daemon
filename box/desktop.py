@@ -5,8 +5,8 @@ class Desktop(FarawayBoxConfig):
 
     def config(self):
         conf = [
-            self.lxpanel(),
-            self.pcmanfm(),
+            #self.lxpanel(),
+            #self.pcmanfm(),
             self.xserver(),
             self.browser(self.attrs["dashboard"])
         ]
