@@ -2,6 +2,7 @@ from box.config import FarawayBoxConfig
 
 class Desktop(FarawayBoxConfig):
     CONFIG_PATH = "/etc/xdg/lxsession/LXDE/autostart"
+    interval = 0
 
     def config(self):
         conf = [
@@ -35,5 +36,5 @@ class Desktop(FarawayBoxConfig):
         return "@chromium --kiosk --incognito {}".format(url)
 
     def kiosk_browser(self, url):
-        return "@/home/pi/kiosk-browser/kiosk-browser {}".format(url)
+        return "@/home/pi/kiosk-browser/kiosk-browser {0} {1}".format(url, interval)
 
