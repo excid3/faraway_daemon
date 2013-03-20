@@ -7,7 +7,7 @@ from util import memoize
 from desktop import Desktop
 from network import Network
 from video import Video
-from reboot import Reboot
+from maintenance import Maintenance
 
 class FarawayBox:
     def update(self):
@@ -16,7 +16,7 @@ class FarawayBox:
         self.update_network()
         self.update_desktop()
 
-        self.reboot()
+        self.maintenance()
 
     def download_config(self):
         print("Downloading config..."),
@@ -34,8 +34,8 @@ class FarawayBox:
         print("Updating desktop configuration..."),
         self.show_result(Desktop(self.config()["desktop"]).update())
 
-    def reboot(self):
-        if Reboot(self.config()["maintenance"]).status():
+    def maintenance(self):
+        if Maintenance(self.config()["maintenance"]).status():
             subprocess.call(["/sbin/shutdown", "-r", "now"])
 
     def show_result(self, result):
