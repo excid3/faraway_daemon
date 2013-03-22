@@ -60,7 +60,8 @@ class FarawayBox:
 
     @memoize
     def config_url(self):
-        return "http://box.farawaylabs.com/boxes/" + self.serial_number() + ".json?auth_token=" + self.auth_token()
+        #return "http://box.farawaylabs.com/boxes/" + self.serial_number() + ".json?auth_token=" + self.auth_token()
+        return "http://192.168.1.68:3000/boxes/" + self.serial_number() + ".json?auth_token=" + self.auth_token()
 
     def auth_token(self):
         path = os.path.expanduser("~/.standup")

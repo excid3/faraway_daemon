@@ -36,5 +36,5 @@ class Desktop(FarawayBoxConfig):
         return "@chromium --kiosk --incognito {}".format(url)
 
     def kiosk_browser(self, url):
-        return "@/home/pi/kiosk-browser/kiosk-browser {0} {1}".format(url, interval)
+        return "@/home/pi/kiosk-browser/kiosk-browser {0} {1}".format(url, self.interval)
 
